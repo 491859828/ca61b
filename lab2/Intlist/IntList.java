@@ -102,7 +102,7 @@ public class IntList {
         if(A == null && B == null) {
             return null;
         }
-        if(B.rest == null) {
+        if(B != null && B.rest == null) {
             return new IntList(B.first, null);
         }
         if(A == null) {
