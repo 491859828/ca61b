@@ -107,5 +107,4 @@ public class LinkedListDeque<T> {
     public boolean isEmpty() {
         return size == 0;
     }
-
 }

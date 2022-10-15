@@ -35,7 +35,6 @@ public class ArrayDeque<T> {
             nextFront = l - (items.length - 1 - nextFront) - 1;
         }
         items = newItems;
-
     }
 
 
@@ -81,7 +80,7 @@ public class ArrayDeque<T> {
         items[minusOne(nextRear)] = null;
         nextRear = minusOne(nextRear);
         size--;
-        if (items.length > 16 && ((double) size / items.length) < 0.25) {
+        if (items.length > 16 && size * 4 < items.length) {
             resize(items.length / 2);
         }
         return r;
@@ -121,6 +120,4 @@ public class ArrayDeque<T> {
         }
         System.out.println();
     }
-
-
 }
