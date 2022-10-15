@@ -47,13 +47,15 @@ public class ArrayDeque <T> {
             size++;
         }
 
-        public void removeFirst() {
+        public T removeFirst() {
+            T r = items[addOne(nextFront)];
             items[addOne(nextFront)] = null;
             nextFront = addOne(nextFront);
             size--;
             if(items.length >= 16 && size * 4 < items.length) {
                 resize(items.length/2);
             }
+            return r;
         }
 
 
@@ -74,13 +76,15 @@ public class ArrayDeque <T> {
             return items[minusOne(nextRear)];
         }
 
-        public void removeLast() {
+        public T removeLast() {
+            T r = items[minusOne(nextRear)];
             items[minusOne(nextRear)] = null;
             nextRear = minusOne(nextRear);
             size--;
             if(items.length > 16 && ((double)size / items.length) < 0.25) {
                 resize(items.length/2);
             }
+            return r;
         }
 
         public T get(int i) {
@@ -90,56 +94,39 @@ public class ArrayDeque <T> {
             return items[(nextFront + i + 1) % items.length];
         }
 
+        public int size() {
+            return size;
+        }
+
+        public boolean isEmpty() {
+            return size == 0;
+        }
+
+        public void printDeque() {
+            if(size < 0) return;
+            if(nextFront > nextRear) {
+                for(int i = nextFront + 1; i < items.length; i++) {
+                    System.out.print(items[i] + " ");
+                }
+                for(int i = 0; i < nextRear; i++) {
+                    System.out.print(items[i] + " ");
+                }
+                System.out.println();
+                return;
+            }
+            for(int i = nextFront + 1; i < nextRear; i++) {
+                System.out.print(items[i] + " ");
+            }
+            System.out.println();
+        }
+
     public static void main(String[] args) {
         ArrayDeque<Integer> d = new ArrayDeque<>();
-        d.addFirst(1);
-        d.addFirst(2);
-        d.addLast(5);
-        d.addLast(5);
-        d.addLast(5);
-        d.addLast(5);
-        d.addFirst(1);
-        d.addFirst(2);
-        d.addLast(5);
-        d.addLast(5);
-        d.addLast(5);
-        d.addLast(5);
-        d.addFirst(1);
-        d.addFirst(2);
-        d.addLast(5);
-        d.addLast(5);
-        d.addLast(5);
-        d.addLast(5);
-        d.addFirst(1);
-        d.addFirst(2);
-        d.addLast(5);
-        d.addLast(5);
-        d.addLast(5);
-        d.addLast(5);
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        d.removeFirst();
-        System.out.println(d.get(2));
-
+        d.addFirst(10);
+        d.addLast(12);
+        d.printDeque();
+        System.out.println(d.size);
+        System.out.println(d.isEmpty());
     }
 
 }
