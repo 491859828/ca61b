@@ -28,7 +28,8 @@ public class ArrayDeque<T> {
             for (int i = 0; i < nextRear; i++) {
                 newItems[i] = items[i];
             }
-            for (int i = l - 1, j = items.length - 1; i >= l - (items.length - 1 - nextFront); i--, j--) {
+            int end = items.length - 1;
+            for (int i = l - 1, j = end; i >= l - (end - nextFront); i--, j--) {
                 newItems[i] = items[j];
             }
             nextFront = l - (items.length - 1 - nextFront) - 1;
@@ -48,7 +49,9 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if(size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         T r = items[addOne(nextFront)];
         items[addOne(nextFront)] = null;
         nextFront = addOne(nextFront);
@@ -71,7 +74,9 @@ public class ArrayDeque<T> {
 
 
     public T removeLast() {
-        if(size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         T r = items[minusOne(nextRear)];
         items[minusOne(nextRear)] = null;
         nextRear = minusOne(nextRear);
@@ -98,7 +103,9 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        if (size < 0) return;
+        if (size < 0) {
+            return;
+        }
         if (nextFront > nextRear) {
             for (int i = nextFront + 1; i < items.length; i++) {
                 System.out.print(items[i] + " ");
