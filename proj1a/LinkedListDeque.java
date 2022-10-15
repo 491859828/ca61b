@@ -45,20 +45,24 @@ public class LinkedListDeque<T> {
         size++;
     }
 
-    public void removeFirst() {
+    public T removeFirst() {
+        T r = first.item;
         first = first.next;
         frontGuard.next = first;
         first.pre = frontGuard;
         last = frontGuard.pre;
         size--;
+        return r;
     }
 
-    public void removeLast() {
+    public T removeLast() {
+        T r = last.item;
         last = last.pre;
         last.next = frontGuard;
         frontGuard.pre = last;
         first = frontGuard.next;
         size--;
+        return r;
     }
     public T get(int i) {
         if(i < 0 || i > size - 1) {
