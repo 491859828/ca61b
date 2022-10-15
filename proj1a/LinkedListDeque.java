@@ -1,8 +1,8 @@
 public class LinkedListDeque<T> {
-    int size = 0;
-    Node<T> frontGuard;
-    Node<T> first;
-    Node<T> last;
+    private int size = 0;
+    private Node<T> frontGuard;
+    private Node<T> first;
+    private Node<T> last;
 
     private class Node<T> {
         Node<T> next;
@@ -32,7 +32,7 @@ public class LinkedListDeque<T> {
         first.pre = newNode;
         frontGuard.next = newNode;
         first = newNode;
-        last = first.pre;
+        last = frontGuard.pre;
         size++;
     }
 
@@ -46,6 +46,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
+        if(size < 0) return null;
         T r = first.item;
         first = first.next;
         frontGuard.next = first;
@@ -56,6 +57,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
+        if(size < 0) return null;
         T r = last.item;
         last = last.pre;
         last.next = frontGuard;
@@ -102,16 +104,4 @@ public class LinkedListDeque<T> {
         return size == 0;
     }
 
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> deque = new LinkedListDeque<>();
-//        deque.addFirst(1);
-//        deque.addFirst(2);
-//        deque.addFirst(3);
-//        deque.addFirst(4);
-        deque.addLast(1213);
-        deque.addLast(121311);
-        deque.addLast(4);
-        System.out.println(deque.get(1));
-
-    }
 }
