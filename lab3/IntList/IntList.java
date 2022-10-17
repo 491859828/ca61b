@@ -111,18 +111,14 @@ public class IntList {
         return new IntList(A.first, catenate(A.rest, B));
     }
 
-    private IntList rHelp(IntList l) {
+    public static IntList  reverse(IntList l) {
         if (l == null || l.rest == null) {
             return l;
         }
-        IntList p = rHelp(l.rest);
+        IntList p = reverse(l.rest);
         l.rest.rest = l;
         l.rest = null;
         return p;
-    }
-    public IntList reverse(IntList list) {
-        IntList l = rHelp(list);
-        return l;
     }
 
 
