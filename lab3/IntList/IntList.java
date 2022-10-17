@@ -120,8 +120,8 @@ public class IntList {
         l.rest = null;
         return p;
     }
-    public IntList reverse() {
-        IntList l = rHelp(this);
+    public IntList reverse(IntList list) {
+        IntList l = rHelp(list);
         return l;
     }
 
